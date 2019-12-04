@@ -21,18 +21,19 @@ public class SearchTest {
     @Test
     public void validSearchTest() {
         driver.get("http://testfasttrackit.info/selenium-test/");
-        driver.findElement(By.cssSelector("Search entire")).sendKeys("jewelry");
+        driver.findElement(By.cssSelector("[placeholder]")).sendKeys("jewelry");
         WebElement searchButton = driver.findElement(By.cssSelector(".search-button"));
         searchButton.click();
 
-        WebElement searchResultMessageElement = driver.findElement(By.cssSelector("search result"));
-        Assert.assertEquals(searchResultMessageElement.getText(), "SEARCH RESULTS FOR 'JEWELRY'");
+        WebElement searchResultMessageElement = driver.findElement(By.cssSelector("h1"));
+        Assert.assertEquals(searchResultMessageElement.getText(),"SEARCH RESULTS FOR 'JEWELRY'");
     }
+     @After
+    public void closeDriver(){
+        driver.quit();
+     }
 
 
-        @After
-                public void closeDriver(){
-            driver.quit();
         }
 
 
@@ -40,6 +41,6 @@ public class SearchTest {
 
 
 
-    }
+
 
 
